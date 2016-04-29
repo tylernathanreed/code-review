@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<!-- Title -->
-		<title>@yield('title', 'Code Review')</title>
+		<title>@yield('title', 'Code Review | Invoices')</title>
 
 		<!-- Meta -->
 		<meta charset="UTF-8">
@@ -16,7 +16,11 @@
 		@yield('head')
 	</head>
 
-	<body>
+	<body ng-app="root">
+		<header>
+			@yield('header')
+		</header>
+
 		<div class="container">
 			@yield('content')
 		</div>

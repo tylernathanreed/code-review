@@ -11,4 +11,6 @@
 |
 */
 
-Route::resource('/', 'InvoicesController');
+Route::get('/', 'InvoicesController@index');
+
+Route::resource('invoices', 'InvoicesController');

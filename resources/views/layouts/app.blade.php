@@ -18,7 +18,7 @@
 
 	<body>
 		<div class="container">
-			@extends('content')
+			@yield('content')
 		</div>
 
 		<div id="tail" class="tail">

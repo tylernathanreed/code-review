@@ -14,3 +14,15 @@
 		</div> <!-- </container> -->
 	</div> <!-- </jumbotron> -->
 @endsection
+
+@section('content')
+	@ifnotempty($invoices)
+		<ul class="list-group">
+			@foreach($invoices as $invoice)
+				<li class="list-group-item">
+					@include('invoices.teaser', compact('invoice'))
+				</li>
+			@endforeach
+		</ul>
+	@endifnotempty
+@endsection

@@ -1,3 +1,59 @@
-// Utilitiies
+/*
+|--------------------------------------------------------------------------
+| Table of Contents
+|--------------------------------------------------------------------------
+|
+| For both functionality and tidiness, these files are to be loaded in a
+| certain order. In the event of clashes, files that were loaded at a
+| later time will override those that were loaded before them.
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Variables
+|--------------------------------------------------------------------------
+|
+| Variables are loaded first, as many other files will depend upon them.
+| All Variables are defined in this section, and used throughout the
+| remainder of the code. This is where most of the magic happens.
+|
+*/
+@import 'variables/variables';
+
+/*
+|--------------------------------------------------------------------------
+| Mixins
+|--------------------------------------------------------------------------
+|
+| Mixins are loaded second, as many other files will depend upon them,
+| but Mixins may also depend upon Variables. All Mixins are defined
+| in this section, and used throughout the remainder of the code.
+|
+*/
+@import 'mixins/mixins';
+
+/*
+|--------------------------------------------------------------------------
+| Components
+|--------------------------------------------------------------------------
+|
+| Components are custom-tailored CSS classes that are applied to various
+| elements in order to achieve a specific functionality. This section
+| will contain most of the functionality that the CSS provides.
+|
+*/
+@import 'components/components';
+
+/*
+|--------------------------------------------------------------------------
+| Utilities
+|--------------------------------------------------------------------------
+|
+| Utilities are simple modifiers that are generally intended to be used on
+| any element. All Utilities are prefixed with '--' (Like a command-line
+| argument). Most Utilties only add/modify a single attribute or two.
+|
+*/
 @import 'utilities/utilities';
 

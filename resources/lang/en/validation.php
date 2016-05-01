@@ -92,8 +92,20 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'bill-to' => [
+            'required' => 'The Bill-To field is required.'
+        ],
+
+        'line.*.description' => [
+            'required' => 'Each line must have a Description.'
+        ],
+
+        'line.*.hours' => [
+            'required' => 'Each line must have Hours.'
+        ],
+
+        'line.*.price' => [
+            'required' => 'Each line must an Hourly Cost.'
         ],
     ],
 

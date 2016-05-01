@@ -1,5 +1,12 @@
 .--full-width { width: 100%; }
+.--half-width { width: 50%; }
 
 .--lines-max-4 { max-height: 7em; }
 
 .--layout-fixed { table-layout: fixed; }
+
+.--padded-horizontal { padding-left: 15px; padding-right: 15px; }
+
+@media (max-width: $screen-xs-max) {
+	.--padded-horizontal-xs { padding-left: 15px; padding-right: 15px; }
+}

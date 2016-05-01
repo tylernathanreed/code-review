@@ -26,7 +26,9 @@ class CreateInvoiceLinesTable extends Migration
 		Schema::create('invoice_lines', function (Blueprint $table)
 		{
 			// Identification
-			$table->integer('invoice_id')->unsigned()->primary();
+			$table->increments('id');
+
+			$table->integer('invoice_id')->unsigned();
 			$table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
 
 			$table->integer('order')->unsigned();
@@ -46,6 +48,6 @@ class CreateInvoiceLinesTable extends Migration
 	public function down()
 	{
 		// Drop the Invoice Lines Table
-		Schema::drop('invoices');
+		Schema::drop('invoice_lines');
 	}
 }

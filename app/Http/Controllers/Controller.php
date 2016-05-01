@@ -8,7 +8,21 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
+use DB;
+
 class Controller extends BaseController
 {
-    use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+	use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+	/**
+	 * A Wrapper around DB::transaction.
+	 *
+	 * @param  Closure  $closure  The Closure that performs the Transaction.
+	 *
+	 * @return void
+	 */
+	protected function transaction($closure)
+	{
+		DB::transaction($closure);
+	}
 }

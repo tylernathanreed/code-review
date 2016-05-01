@@ -11,11 +11,17 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
-    ];
+$factory->define(App\Models\Invoice::class, function (Faker\Generator $faker) {
+	return [
+		'bill_to' => $faker->address,
+		'taxes' => $faker->numberBetween(100, 10000),
+	];
+});
+
+$factory->define(App\Models\InvoiceLine::class, function (Faker\Generator $faker) {
+	return [
+		'description' => $faker->sentence,
+		'hourly_price' => $faker->numberBetween(1500, 6000),
+		'hours' => $faker->numberBetween(1, 60)
+	];
 });

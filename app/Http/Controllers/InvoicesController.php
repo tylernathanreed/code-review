@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+
+use App\Http\Requests\InvoiceRequest;
+use App\Models\Invoice;
+
+use PDF;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +22,21 @@ use App\Http\Requests;
 class InvoicesController extends Controller
 {
 	/**
-	 * Display a listing of the resource.
+	 * Display a Listing of the Resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{
+		// Determine all of the Invoices
+		$invoices = Invoice::all();
+
 		// Show the Index Page for Invoices
-		return view('invoices.index');
+		return view('invoices.index', compact('invoices'));
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the Form for Creating a new Resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -45,38 +52,65 @@ class InvoicesController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(InvoiceRequest $request)
 	{
-		//
+		// Store using a Transaction to prevent Childless Parents
+		$this->transaction(function() use ($request) {
+			// Create the Invoice from the Request
+			$invoice = Invoice::create([
+				'bill_to' 		=> $request->input('bill-to'),
+				'created_at' 	=> $request->date,
+				'taxes' 		=> $request->taxes * 100
+			]);
+
+			// Create each Invoice Line
+			foreach($request->line as $line)
+			{
+				$invoice->lines()->create([
+					'order' 		=> $line['order'],
+					'description' 	=> $line['description'],
+					'hourly_price' 	=> $line['price'] * 100,
+					'hours' 		=> $line['hours']
+				]);
+			}
+		});
+
+		// Redirect to the Index Page
+		return redirect()->intended(route('invoices.index'));
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified Resource.
 	 *
-	 * @param  int  $id
+	 * @param  Invoice  $invoice  The specified Resource.
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function show(Invoice $invoice)
 	{
-		//
+		// Show the Invoice Page
+		return view('invoices.show', compact('invoice'));
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the Form for Editing the specified Resource.
 	 *
-	 * @param  int  $id
+	 * @param  Invoice  $invoice  The specified Resource.
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id)
+	public function edit(Invoice $invoice)
 	{
-		//
+		// Show the Edit Page for Invoices
+		return view('invoices.edit', compact('invoice'));
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified Resource in Storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  int  $id
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id)
@@ -85,13 +119,32 @@ class InvoicesController extends Controller
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified Resource from Storage.
 	 *
-	 * @param  int  $id
+	 * @param  Invoice  $invoice  The specified Resource.
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function destroy(Invoice $invoice)
 	{
-		//
+		// Delete the Invoice
+		$invoice->delete();
+
+		// Redirect to the Index Page
+		return redirect()->intended(route('invoices.index'));
+	}
+
+	/**
+	 * Downloads the specified Resource as a PDF Document.
+	 *
+	 * @param  Invoice  $invoice  The specified Resource.
+	 *
+	 * @return Response
+	 */
+	public function pdf(Invoice $invoice)
+	{
+		$pdf = PDF::loadView('invoices.show', compact('invoice'));
+
+		return $pdf->download('invoice.pdf');
 	}
 }

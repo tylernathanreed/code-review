@@ -1,0 +1,36 @@
+.container-flex {
+	display: flex;
+	flex-flow: column;
+}
+
+.container-flex-xs {
+	@media (max-width: $screen-xs-max) {
+		display: flex;
+		flex-flow: column;
+	}
+}
+
+.flex-row,
+.flex-row-xs {
+	@include make-flex-row()
+}
+
+.flex-row-sm {
+	@media (min-width: $screen-sm-min) {
+		@include make-flex-row()
+	}
+}
+
+.flex-row-md {
+	@media (min-width: $screen-md-min) {
+		@include make-flex-row()
+	}
+}
+
+.flex-row-lg {
+	@media (min-width: $screen-lg-min) {
+		@include make-flex-row()
+	}
+}
+
+@include make-flex-grid()

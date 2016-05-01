@@ -13,4 +13,13 @@
 
 Route::get('/', 'InvoicesController@index');
 
-Route::resource('invoices', 'InvoicesController');
+Route::resource('invoices', 'InvoicesController', [
+	'parameters' => 'singular'
+]);
+
+Route::group(['prefix' => 'invoices'], function() {
+	Route::get('{invoice}/pdf', [
+		'as' 	=> 'invoices.pdf',
+		'uses' 	=> 'InvoicesController@pdf'
+	]);
+});

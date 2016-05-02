@@ -143,7 +143,7 @@ class InvoicesController extends Controller
 	 */
 	public function pdf(Invoice $invoice)
 	{
-		$pdf = PDF::loadView('invoices.show', compact('invoice'));
+		$pdf = PDF::loadView('invoices.pdf', compact('invoice'));
 
 		return $pdf->download('invoice.pdf');
 	}

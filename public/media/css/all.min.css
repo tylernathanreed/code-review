@@ -772,6 +772,17 @@
   -ms-flex-pack: justify;
   justify-content: space-between; }
 
+.--align-top {
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+
+ol.--padding-half, ul.--padding-half {
+  padding-left: 20px; }
+
+ol.--list-style-none, ul.--list-style-none {
+  list-style: none; }
+
 .--full-width {
   width: 100%; }
 

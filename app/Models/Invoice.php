@@ -22,11 +22,11 @@ class Invoice extends Model
 	//* Attributes *//
 	//////////////////
 	/**
-	 * The Attributes that a Protected from Mass Assignment.
+	 * The Attributes that can be Mass Assigned.
 	 *
 	 * @var array
 	 */
-	protected $guarded = ['id'];
+	protected $fillable = ['bill_to', 'billed_at', 'taxes'];
 
 	/////////////////
 	//* Accessors *//

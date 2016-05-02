@@ -22,7 +22,7 @@ class InvoiceLine extends Model
 	//* Attributes *//
 	//////////////////
 	/**
-	 * The Attributes that can be Mass Assignment.
+	 * The Attributes that can be Mass Assigned.
 	 *
 	 * @var array
 	 */

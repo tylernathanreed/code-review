@@ -10,28 +10,30 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- Styles -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/media/css/all.min.css" rel="stylesheet">
+		@stylesheet("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+		@stylesheet("/media/css/all.min.css")
 
 		@yield('head')
 	</head>
 
-	<body ng-app="root">
+	<body>
 		<header>
 			@yield('header')
 		</header>
 
-		<div class="container">
+		@container
 			@yield('content')
-		</div>
+		@endcontainer
 
-		<div id="tail" class="tail">
+		@tail(['id' => 'tail'])
+			@yield('templates')
+
 			<!-- Scripts -->
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.16/angular2.min.js"></script>
+			@script("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js")
+			@script("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
+			@script("https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js")
 
 			@yield('tail')
-		</div> <!-- </tail> -->
+		@endtail
 	</body>
 </html>

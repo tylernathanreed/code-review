@@ -2,17 +2,27 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Static Page Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| All Routes pertaining to static pages and/or content are defined here.
+| These Routes all use the PagesController, which is responsible for
+| serving this content. All static content begins with a root URL.
 |
 */
 
 Route::get('/', 'PagesController@home');
 
+/*
+|--------------------------------------------------------------------------
+| Invoice Routes
+|--------------------------------------------------------------------------
+|
+| All Routes pertaining to Invoices are defined here. These routes are
+| prefixed by the 'invoices' noun, and use the '{invoice}' wildcard
+| when necessary. The Route Names are prefixed with 'invoices'.
+|
+*/
 Route::resource('invoices', 'InvoicesController', [
 	'parameters' => 'singular'
 ]);

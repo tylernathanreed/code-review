@@ -49,7 +49,7 @@
 					<div class="col-xs-12 col-sm-6">
 						<div class="form-group">
 							<label for="date" class="form-label">Date:</label>
-							<input type="date" class="form-control" value="{{ $invoice->created_at->format('Y-m-d') }}" readonly>
+							<input type="date" class="form-control" value="{{ $invoice->billed_at }}" readonly>
 						</div> <!-- </form-group> -->
 					</div> <!-- </col> -->
 				</div> <!-- </row> -->

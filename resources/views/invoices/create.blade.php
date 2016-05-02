@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('header')
-	<div class="jumbotron">
-		<div class="container">
+	@jumbotron
+		@container
 			<h1>Create New Invoices</h1>
 			<p>This is where you can create a new Invoice.</p>
 			<p>
@@ -11,12 +11,12 @@
 					<span>Go Back</span>
 				</a>
 			</p>
-		</div> <!-- </container> -->
-	</div> <!-- </jumbotron> -->
+		@endcontainer
+	@endjumbotron
 @endsection
 
 @section('content')
-	<div class="panel panel-primary">
+	@panel(['class' => 'panel-primary'])
 		<div class="panel-heading">
 			<h2 class="panel-title">Create new Invoice</h2>
 		</div> <!-- </panel-header> -->
@@ -36,9 +36,10 @@
 						</div> <!-- </col> -->
 
 						<div class="col-xs-12 col-sm-6">
-							<div class="form-group">
-								<label for="date" class="form-label">Date:</label>
-								<input type="date" name="date" class="form-control" value="{{ old('date', date('Y-m-d')) }}">
+							<div class="form-group{{ has_error('billed_at') }}">
+								<label for="billed_at" class="form-label">Date:</label>
+								<input type="date" name="billed_at" class="form-control" value="{{ old('billed_at', date('Y-m-d')) }}">
+								@error('billed_at')
 							</div> <!-- </form-group> -->
 						</div> <!-- </col> -->
 					</div> <!-- </row> -->
@@ -51,46 +52,76 @@
 							<div class="flex-col-xs-1 --center"><b>Total</b></div>
 						</div> <!-- </flex-row> -->
 
-						@foreach([0, 1, 2, 3] as $index)
-							<div class="flex-row">
-								<i class="glyphicon glyphicon-move"></i>
+						<div id="lines">
+							<div class="flex-row" v-for="line in lines">
+								<i class="glyphicon glyphicon-move" style="visibility: hidden"></i>
 
-								<div class="container-flex-xs flex-row-sm --flush --padded-horizontal-xs">
-									<div class="flex-row-xs-1 flex-col-sm-1 flex-col-md-2{{ has_error("line.$index.description") }}">
-										<input type="text" name="line[{{ $index }}][description]" placeholder="Description" class="form-control" value="{{ old("line.$index.description") }}"/>
-										@error("line.$index.description")
-									</div> <!-- </flex-col> -->
-
-									<div class="flex-row-xs-1 flex-col-sm-1{{ has_error("line.$index.price") }}">
-										<div class="input-group">
-											<span class="input-group-addon">$</span>
-											<input type="number" step="0.01" name="line[{{ $index }}][price]" placeholder="Hourly Price" min="0" class="form-control" value="{{ old("line.$index.price", 0) }}"/>
-										</div> <!-- </input-group> -->
-										@error("line.$index.price")
-									</div> <!-- </flex-col> -->
-
-									<div class="flex-row-xs-1 flex-col-sm-1{{ has_error("line.$index.hours") }}">
-										<input type="number" step="0.01" name="line[{{ $index }}][hours]" placeholder="Hours" min="0" class="form-control" value="{{ old("line.$index.hours", 0) }}"/>
-										@error("line.$index.hours")
+								<div class="container-flex-xs flex-row-sm --flush --padded-horizontal-xs --align-top">
+									<div :class="[
+										'flex-row-xs-1',
+										'flex-col-sm-1',
+										'flex-col-md-2',
+										'--full-width',
+										errors['line.' + $index + '.description'] ? 'has-error' : ''
+									]">
+										<input type="text"
+											   placeholder="Description"
+											   class="form-control"
+											   name="line[@{{ $index }}][description]"
+											   v-model="line.description"
+										/>
+										<error :error="errors['line.' + $index + '.description']"></error>
 									</div> <!-- </flex-col> -->
 
 									<div class="flex-row-xs-1 flex-col-sm-1">
 										<div class="input-group">
 											<span class="input-group-addon">$</span>
-											<input type="number" step="0.01" name="line[{{ $index }}][total]" placeholder="Total" min="0" class="form-control" readonly/>
+											<input type="number"
+												   step="0.01"
+												   placeholder="Hourly Price"
+												   min="0"
+												   class="form-control"
+												   name="line[@{{ $index }}][price]"
+												   v-model="line.price"
+											/>
 										</div> <!-- </input-group> -->
 									</div> <!-- </flex-col> -->
 
-									<input type="hidden" name="line[{{ $index }}][order]" value="{{ $index }}"/>
+									<div class="flex-row-xs-1 flex-col-sm-1">
+										<input type="number"
+											   step="0.01"
+											   placeholder="Hours"
+											   min="0"
+											   class="form-control"
+											   name="line[@{{ $index }}][hours]"
+											   v-model="line.hours"
+										/>
+									</div> <!-- </flex-col> -->
+
+									<div class="flex-row-xs-1 flex-col-sm-1">
+										<div class="input-group">
+											<span class="input-group-addon">$</span>
+											<input type="number"
+												   step="0.01"
+												   placeholder="Total"
+												   min="0"
+												   class="form-control"
+												   :value="line.price * line.hours"
+												   readonly
+											/>
+										</div> <!-- </input-group> -->
+									</div> <!-- </flex-col> -->
 								</div> <!-- </flex-row> -->
 
-								<i class="glyphicon glyphicon-trash"></i>
+								<input type="hidden" name="line[@{{ $index }}][order]" :value="$index"/>
+
+								<i class="glyphicon glyphicon-remove" @click="deleteLine(line)"></i>
 							</div> <!-- </flex-row> -->
-						@endforeach
+						</div> <!-- </lines> -->
 
 						<div class="flex-row">
 							<div class="flex-col-xs-1 --center">
-								<a class="btn btn-primary --half-width" href="#" role="button">
+								<a class="btn btn-primary --half-width" href="#" role="button" @click="addLine">
 									<i class="glyphicon glyphicon-plus"></i>
 									<span>Add New Line</span>
 								</a>
@@ -102,7 +133,14 @@
 							<div class="flex-col-xs-6 flex-col-sm-2">
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" step="0.01" name="subtotal" placeholder="Subtotal" min="0" class="form-control" readonly/>
+									<input type="number"
+										   step="0.01"
+										   placeholder="Subtotal"
+										   min="0"
+										   class="form-control"
+										   :value="subtotal"
+										   readonly
+									/>
 								</div> <!-- </input-group> -->
 							</div> <!-- </flex-col> -->
 						</div> <!-- </flex-row> -->
@@ -112,7 +150,14 @@
 							<div class="flex-col-xs-6 flex-col-sm-2">
 								<div class="input-group{{ has_error("taxes") }}">
 									<span class="input-group-addon">$</span>
-									<input type="number" step="0.01" name="taxes" placeholder="Taxes" min="0" class="form-control"/>
+									<input type="number"
+										   step="0.01"
+										   name="taxes"
+										   placeholder="Taxes"
+										   min="0"
+										   class="form-control"
+										   v-model="taxes"
+									/>
 								</div> <!-- </input-group> -->
 								@error("taxes")
 							</div> <!-- </flex-col> -->
@@ -123,7 +168,14 @@
 							<div class="flex-col-xs-6 flex-col-sm-2">
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" step="0.01" name="total" placeholder="Total" min="0" class="form-control" readonly/>
+									<input type="number"
+										   step="0.01"
+										   placeholder="Total"
+										   min="0"
+										   class="form-control"
+										   :value="total"
+										   readonly
+									/>
 								</div> <!-- </input-group> -->
 							</div> <!-- </flex-col> -->
 						</div> <!-- </flex-row> -->
@@ -136,5 +188,62 @@
 				</div> <!-- </container-fluid> -->
 			</form>
 		</div> <!-- </panel-body> -->
-	</div> <!-- </panel> -->
+	@endpanel
+@endsection
+
+@section('templates')
+
+	<template id="template-error">
+		<span class="help-block" v-if="error">
+			<strong>
+				@{{ error }}
+			</strong>
+		</span>
+	</template>
+
+@endsection
+
+@section('tail')
+	<script>
+		Vue.component('error', {
+			template: '#template-error',
+			props: ['error']
+		});
+
+		new Vue({
+			el: 'body',
+
+			data: {
+				lines: {!! json_encode(old('line', [])) !!},
+				errors: {!! $errors->toJson() !!},
+				taxes: 0
+			},
+
+			computed: {
+				subtotal: function() {
+					return this.lines.reduce(function(previous, current) {
+						return previous + (current.price * current.hours);
+					}, 0);
+				},
+
+				total: function() {
+					return +this.subtotal + +this.taxes;
+				}
+			},
+
+			methods: {
+				addLine: function() {
+					this.lines.push({
+						description: '',
+						price: 0,
+						hours: 0,
+					});
+				},
+
+				deleteLine: function(line) {
+					this.lines.$remove(line);
+				},
+			}
+		});
+	</script>
 @endsection

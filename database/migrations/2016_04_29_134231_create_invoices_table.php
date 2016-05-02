@@ -30,6 +30,7 @@ class CreateInvoicesTable extends Migration
 
 			// Attributes
 			$table->string('bill_to');
+			$table->date('billed_at');
 			$table->integer('taxes')->unsigned();
 
 			// Revision Tracking

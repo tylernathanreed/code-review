@@ -59,7 +59,7 @@ class InvoicesController extends Controller
 			// Create the Invoice from the Request
 			$invoice = Invoice::create([
 				'bill_to' 		=> $request->input('bill-to'),
-				'created_at' 	=> $request->date,
+				'billed_at' 	=> $request->billed_at,
 				'taxes' 		=> $request->taxes * 100
 			]);
 

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'InvoicesController@index');
+Route::get('/', 'PagesController@home');
 
 Route::resource('invoices', 'InvoicesController', [
 	'parameters' => 'singular'

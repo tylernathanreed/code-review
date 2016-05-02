@@ -13,4 +13,13 @@
 	</div>
 </div> <!-- </flex-row> -->
 <br>
-<a class="btn btn-primary" href="{{ route('invoices.show', $invoice->id) }}" role="button">View Details</a>
+<div class="actions">
+	<a class="btn btn-primary" href="{{ route('invoices.show', $invoice->id) }}" role="button">
+		<i class="glyphicon glyphicon-eye-open"></i>
+		<span>View Details</span>
+	</a>
+	<a class="btn btn-info" target="_blank" href="{{ route('invoices.pdf', $invoice->id) }}" role="button">
+		<i class="glyphicon glyphicon-download-alt"></i>
+		<span>Download as PDF</span>
+	</a>
+</div>

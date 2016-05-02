@@ -6,9 +6,14 @@
 			<h1>Show Invoice</h1>
 			<p>This page shows the details of an Invoice.</p>
 			<div>
-				<a class="btn btn-warning" href="{{ route('invoices.edit', $invoice->id) }}" role="button">
-					<i class="glyphicon glyphicon-pencil"></i>
-					<span>Edit</span>
+				<a class="btn btn-primary" href="{{ route('invoices.index') }}" role="button">
+					<i class="glyphicon glyphicon-chevron-left"></i>
+					<span>Back</span>
+				</a>
+
+				<a class="btn btn-info" target="_blank" href="{{ route('invoices.pdf') }}" role="button">
+					<i class="glyphicon glyphicon-download-alt"></i>
+					<span>Download as PDF</span>
 				</a>
 
 				<form method="POST" action="{{ route('invoices.destroy', $invoice->id) }}" class="--inline-block">

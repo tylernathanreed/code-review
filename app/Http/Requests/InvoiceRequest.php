@@ -4,6 +4,16 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+/*
+|--------------------------------------------------------------------------
+| Invoice Request
+|--------------------------------------------------------------------------
+|
+| The Invoice Request is responsible for Authorizing and Validating all
+| requests that involve managing an Invoice. This application does't
+| have a User Authentication Layer, so Authorization is granted.
+|
+*/
 class InvoiceRequest extends Request
 {
 	/**
@@ -25,11 +35,11 @@ class InvoiceRequest extends Request
 	{
 		return [
 			'bill-to' 			 => 'required',
-			'date' 				 => 'required|date',
+			'billed_at' 		 => 'required|date',
 			'line.*.description' => 'required',
-			'line.*.hours' 		 => 'required',
-			'line.*.price' 		 => 'required',
-			'taxes' 			 => 'required'
+			'line.*.hours' 		 => 'required|min:0',
+			'line.*.price' 		 => 'required|min:0',
+			'taxes' 			 => 'required|min:0'
 		];
 	}
 }

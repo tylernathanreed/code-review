@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/code-review":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/code-review","hostpath":"F:/Links/Wamp/3.0/www/code-review","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"F:/Links/Wamp/3.0/www/code-review","disabled":false,"__vagrantfile":true}}}

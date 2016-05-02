@@ -1,0 +1,8 @@
+[02-May-2016 00:08:23 UTC] PHP Warning:  require(/home/tylernathanreed/public_html/code-review.tylernathanreed.com/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /home/tylernathanreed/public_html/code-review.tylernathanreed.com/bootstrap/autoload.php on line 17
+[02-May-2016 00:08:23 UTC] PHP Stack trace:
+[02-May-2016 00:08:23 UTC] PHP   1. {main}() /home/tylernathanreed/public_html/code-review.tylernathanreed.com/artisan:0
+[02-May-2016 00:08:23 UTC] PHP   2. require() /home/tylernathanreed/public_html/code-review.tylernathanreed.com/artisan:16
+[02-May-2016 00:08:23 UTC] PHP Fatal error:  require(): Failed opening required '/home/tylernathanreed/public_html/code-review.tylernathanreed.com/bootstrap/../vendor/autoload.php' (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/tylernathanreed/public_html/code-review.tylernathanreed.com/bootstrap/autoload.php on line 17
+[02-May-2016 00:08:23 UTC] PHP Stack trace:
+[02-May-2016 00:08:23 UTC] PHP   1. {main}() /home/tylernathanreed/public_html/code-review.tylernathanreed.com/artisan:0
+[02-May-2016 00:08:23 UTC] PHP   2. require() /home/tylernathanreed/public_html/code-review.tylernathanreed.com/artisan:16

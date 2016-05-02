@@ -71,6 +71,6 @@ class Currency
 	 */
 	public function asCurrency($symbol = '$')
 	{
-		return $symbol . $this->inDollars();
+		return $symbol . money_format('%.2n', $this->inDollars());
 	}
 }

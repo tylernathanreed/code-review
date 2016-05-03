@@ -1,1 +1,20 @@
+/*
+|--------------------------------------------------------------------------
+| Mixins
+|--------------------------------------------------------------------------
+|
+| Mixins are loaded second, as many other files will depend upon them,
+| but Mixins may also depend upon Variables. All Mixins are defined
+| in this section, and used throughout the remainder of the code.
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Components
+|--------------------------------------------------------------------------
+|
+| For all mixins within the components directory.
+|
+*/
 @import "components/flex-grid"

@@ -1,2 +1,30 @@
+/*
+|--------------------------------------------------------------------------
+| Variables
+|--------------------------------------------------------------------------
+|
+| Variables are loaded first, as many other files will depend upon them.
+| All Variables are defined in this section, and used throughout the
+| remainder of the code. This is where most of the magic happens.
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Flex Grid
+|--------------------------------------------------------------------------
+|
+| For `.container-flex`.
+|
+*/
 @import 'flex-grid';
+
+/*
+|--------------------------------------------------------------------------
+| Screen
+|--------------------------------------------------------------------------
+|
+| For media queries.
+|
+*/
 @import 'screen';

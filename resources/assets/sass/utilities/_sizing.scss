@@ -1,10 +1,23 @@
+/*
+|--------------------------------------------------------------------------
+| Sizing
+|--------------------------------------------------------------------------
+|
+| For Width, Height, Marging and Padding.
+|
+*/
+
+// Width Attribute
 .--full-width { width: 100%; }
 .--half-width { width: 50%; }
 
+// Height Attribute
 .--lines-max-4 { max-height: 7em; }
 
+// Column Width Table Layouts
 .--layout-fixed { table-layout: fixed; }
 
+// Padding
 .--padded-horizontal { padding-left: 15px; padding-right: 15px; }
 
 @media (max-width: $screen-xs-max) {

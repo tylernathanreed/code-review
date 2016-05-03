@@ -1,8 +1,19 @@
+/*
+|--------------------------------------------------------------------------
+| Flex Grid
+|--------------------------------------------------------------------------
+|
+| For `.container-flex`.
+|
+*/
+
+// Main Container
 .container-flex {
 	display: flex;
 	flex-flow: column;
 }
 
+// Main Container for Extra-Small Screens
 .container-flex-xs {
 	@media (max-width: $screen-xs-max) {
 		display: flex;
@@ -10,6 +21,7 @@
 	}
 }
 
+// Rows within the Main Container
 .flex-row,
 .flex-row-xs {
 	@include make-flex-row()
@@ -33,4 +45,5 @@
 	}
 }
 
+// Add the flex-row and flex-col modifiers
 @include make-flex-grid()

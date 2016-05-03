@@ -7,9 +7,9 @@ If you wish to download this project, and try it for yourself, please refer to t
  - Clone this repository
  - Make sure the Document Root is set to `~/code-review/public`
  - Run the following commands, in order:
-    - composer install
-    - php artisan migrate
-    - npm install
+    - `composer install`
+    - `php artisan migrate`
+    - `npm install`
 
 ## User Stories
 

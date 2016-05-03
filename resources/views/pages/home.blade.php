@@ -27,7 +27,7 @@
 			</p>
 
 			<p>
-				If you wish to download this project, and try it for yourself, please refer to the <a target="_blank" href="#">Installation &amp; Setup Guide</a>.
+				If you wish to download this project, and try it for yourself, please refer to the <a target="_blank" href="https://docs.google.com/document/d/1DHfC1Ds7O3M41Gh69BTF8_xZAitTmDy6QgGZ3A6-v8E">Installation &amp; Setup Guide</a>.
 			</p>
 
 			<section id="user-stories">
@@ -81,6 +81,7 @@
 						<span>If you omit something for brevity (like xss filtering), just put a comment to indicate you’re aware of it</span>
 						<ul>
 							<li>Editting existing Invoices was excluded</li>
+							<li>Test Cases using PHPUnit was excluded</li>
 						</ul>
 					</li>
 					<li>
@@ -191,7 +192,7 @@
 						<i class="glyphicon glyphicon-ok"></i>&nbsp;
 						<span>Send Instructions on how to Setup/Install</span>
 						<ul>
-							<li>Check out the <a target="_blank" href="#">Installation &amp; Setup Guide</a>.</li>
+							<li>Check out the <a target="_blank" href="https://docs.google.com/document/d/1DHfC1Ds7O3M41Gh69BTF8_xZAitTmDy6QgGZ3A6-v8E">Installation &amp; Setup Guide</a>.</li>
 						</ul>
 					</li>
 					<li>

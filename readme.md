@@ -1,27 +1,26 @@
-# Laravel PHP Framework
+# PHP Coding Exercise: Hourly Invoice
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+This project was created for a Code Assessment for Sherman Bridge. The original specifications of the project can be found [here](https://docs.google.com/document/d/1wcwS9DNdlEsskdxl_mhdunMpCVH1GOBi8vub_CL-RUQ). An additional requirements specification was created for this project specifically, which can be found [here](https://docs.google.com/document/d/12mR6VuzRoI2SC8Iox_C6IFCDgLEFayJFB-6mHp04Kbs).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+If you wish to download this project, and try it for yourself, please refer to the [Installation & Setup Guide](https://docs.google.com/document/d/1DHfC1Ds7O3M41Gh69BTF8_xZAitTmDy6QgGZ3A6-v8E).
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## User Stories
 
-## Official Documentation
+ - User fills out an 'hourly invoice' form with their name, address, hourly rate, customer's contact info, and a log of work (date, hours, description)
+ - User sees total hours and invoice amount in real-time live without submitting form
+ - User clicks "generate PDF" and a PDF invoice is downloaded
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Requirements
+ - Use a PHP framework
+ - Use one or more frontend libraries (bootstrap, angular, jquery, etc)
+ - If you omit something for brevity (like xss filtering), just put a comment to indicate you’re aware of it
+ - Use a PDF library of your choice
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+## Bonus
+ - Use AngularJS or React
+ - Use Bootstrap UI
+ - Host it somewhere
+ - Store and show previous Invoices
+ - Use Vagrant
+ - Use Composer, Npm, Bower, or other Package Managers
+ - Use Symfony and Doctrine

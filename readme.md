@@ -2,7 +2,14 @@
 
 This project was created for a Code Assessment for Sherman Bridge. The original specifications of the project can be found [here](https://docs.google.com/document/d/1wcwS9DNdlEsskdxl_mhdunMpCVH1GOBi8vub_CL-RUQ). An additional requirements specification was created for this project specifically, which can be found [here](https://docs.google.com/document/d/12mR6VuzRoI2SC8Iox_C6IFCDgLEFayJFB-6mHp04Kbs).
 
-If you wish to download this project, and try it for yourself, please refer to the [Installation & Setup Guide](https://docs.google.com/document/d/1DHfC1Ds7O3M41Gh69BTF8_xZAitTmDy6QgGZ3A6-v8E).
+If you wish to download this project, and try it for yourself, please refer to the [Installation & Setup Guide](https://docs.google.com/document/d/1DHfC1Ds7O3M41Gh69BTF8_xZAitTmDy6QgGZ3A6-v8E). In short, you'll need to do the following:
+ - Setup a Linux Environment (WAMP, MAMP, or Vagrant, etc.)
+ - Clone this repository
+ - Make sure the Document Root is set to `~/code-review/public`
+ - Run the following commands, in order:
+    - composer install
+    - php artisan migrate
+    - npm install
 
 ## User Stories
 

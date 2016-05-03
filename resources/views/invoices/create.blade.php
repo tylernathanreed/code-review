@@ -108,6 +108,7 @@
 												   class="form-control"
 												   :value="line.price * line.hours"
 												   readonly
+												   tabindex="-1"
 											/>
 										</div> <!-- </input-group> -->
 									</div> <!-- </flex-col> -->
@@ -140,6 +141,7 @@
 										   class="form-control"
 										   :value="subtotal"
 										   readonly
+										   tabindex="-1"
 									/>
 								</div> <!-- </input-group> -->
 							</div> <!-- </flex-col> -->
@@ -175,6 +177,7 @@
 										   class="form-control"
 										   :value="total"
 										   readonly
+										   tabindex="-1"
 									/>
 								</div> <!-- </input-group> -->
 							</div> <!-- </flex-col> -->
